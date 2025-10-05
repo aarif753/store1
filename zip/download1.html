@@ -521,7 +521,7 @@
   </header>
         
         <section class="download-section">
-            <a href="download/aa0105.zip" class="download-btn pulse">
+         <a href="download/aa0105.zip" class="download-btn pulse">
                 <i class="fas fa-download"></i> Download Now
             </a>
             <p style="margin-top: 15px; opacity: 0.8;">100% Secure | Free use</p>
@@ -571,7 +571,7 @@
 </footer>
     </div>
 
-    <script>
+   <script>
         // Create floating elements
         const floatingContainer = document.querySelector('.floating-elements');
         for (let i = 0; i < 15; i++) {
@@ -595,7 +595,8 @@
         // Add click effect to download button
         const downloadBtn = document.querySelector('.download-btn');
         downloadBtn.addEventListener('click', function(e) {
-            e.preventDefault();
+            // Remove preventDefault() to allow actual download
+            // e.preventDefault();
             
             // Create ripple effect
             const ripple = document.createElement('span');
@@ -617,7 +618,9 @@
             }, 600);
             
             // Show download confirmation
-            alert('Thank you for downloading Creative Studio Pro! Your download will begin shortly.');
+            setTimeout(() => {
+                alert('Thank you for downloading NEET Quiz Collection! Your download will begin shortly.');
+            }, 100);
         });
 
         // Add CSS for ripple effect
@@ -643,4 +646,5 @@
     <script src="https://aarifalam.life/main/js/main-header.js"></script>
 
 </body>
+
 </html>
