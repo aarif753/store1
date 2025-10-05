@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Premium Product Download</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://aarifalam.life/main/css/main-header.css" rel="stylesheet">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            background-size: 400% 400%;
+            animation: gradientBG 15s ease infinite;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+            margin-top: 60px;
+        }
+
+        @keyframes gradientBG {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        .container {
+            max-width: 1200px;
+            width: 100%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+            padding: 40px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+            animation: slideDown 0.8s ease-out;
+        }
+
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .small-header {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            color: #ffcc00;
+            opacity: 0;
+            animation: fadeIn 0.8s ease-out 0.3s forwards;
+        }
+
+        h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            background: linear-gradient(45deg, #ffcc00, #ff6699);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .download-section {
+            text-align: center;
+            margin: 40px 0;
+            animation: fadeIn 1s ease-out 0.5s forwards;
+            opacity: 0;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 18px 40px;
+            background: linear-gradient(45deg, #ff3366, #ff9933);
+            color: white;
+            font-size: 1.2rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(255, 51, 102, 0.4);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 25px rgba(255, 51, 102, 0.6);
+        }
+
+        .download-btn:active {
+            transform: translateY(0);
+        }
+
+        .download-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, #ff9933, #ff3366);
+            z-index: -1;
+            transition: opacity 0.3s ease;
+            opacity: 0;
+        }
+
+        .download-btn:hover::before {
+            opacity: 1;
+        }
+
+        .download-btn i {
+            margin-right: 10px;
+            font-size: 1.5rem;
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 51, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 51, 102, 0); }
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        @media (max-width: 768px) {
+            .content {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .text-content {
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 15px;
+            backdrop-filter: blur(5px);
+            animation: fadeInLeft 1s ease-out 0.7s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInLeft {
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .text-content h2 {
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #ffcc00;
+        }
+
+        .text-content p {
+            line-height: 1.8;
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+
+        .features {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .features li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+        }
+
+        .features li:last-child {
+            border-bottom: none;
+        }
+
+        .features li i {
+            color: #4cd964;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .image-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            animation: fadeInRight 1s ease-out 0.9s forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInRight {
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .product-image {
+            max-width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+            transition: transform 0.5s ease;
+        }
+
+        .product-image:hover {
+            transform: scale(1.03);
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            margin: 40px 0;
+            text-align: center;
+            animation: fadeIn 1s ease-out 1.1s forwards;
+            opacity: 0;
+        }
+
+        .stat-item {
+            padding: 20px;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #ffcc00;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
+            color: rgba(255, 255, 255, 0.7);
+            animation: fadeIn 1s ease-out 1.3s forwards;
+            opacity: 0;
+        }
+
+        .floating-elements {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .floating-element {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-1000px) rotate(720deg); }
+        }
+.site-footer {
+  background: transparent;
+  color: #ffffff;
+  padding: 20px 10px;
+  text-align: center;
+  font-size: 14px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.site-footer a {
+  color: #fff;
+  margin: 0 8px;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.site-footer a:hover {
+  color: black;
+}
+
+.site-footer p {
+  margin: 5px 0;
+}
+
+.site-footer p:last-child {
+  font-size: 12px;
+  color: black;
+
+ 
+}
+
+@media (max-width: 600px) {
+  .site-footer {
+    font-size: 13px;
+  }
+  .site-footer p:last-child {
+    font-size: 11px;
+  }
+}
+    </style>
+</head>
+<body>
+   <div class="header-0105-scroll-progress" id="header0105ScrollProgress" aria-hidden="true"></div>
+
+    <header class="header-0105" role="banner">
+        <div class="header-0105-container">
+            <div class="header-0105-inner">
+                <a href="/index.html" class="header-0105-logo" aria-label="Go to homepage">
+                    <div class="header-0105-logo-icon" aria-hidden="true">
+                        <i class="fas fa-brain"></i>
+                    </div>
+                    <span class="header-0105-logo-text">AarifAlam.Life</span>
+                </a>
+
+                <nav class="header-0105-nav" aria-label="Primary navigation">
+                    <ul class="header-0105-nav-links" id="header0105NavLinks">
+                        <li><a href="/index.html"><i class="fas fa-home" aria-hidden="true"></i> Home</a></li>
+                        
+                        <li class="header-0105-dropdown">
+                            <a href="/blog/index.html"><i class="fas fa-brain" aria-hidden="true"></i>My Blog<i class="fas fa-chevron-down" style="font-size: 0.8rem; margin-left: 0.5rem;"></i></a>
+                            <div class="header-0105-dropdown-menu">
+                                <a href="/blog/Value-of-time.html"><i class="fas fa-clock"></i>Value of time</a>
+                                <a href="/blog/islamic/5-powerful-quran-words.html"><i class="fas fa-quran"></i>5 powerful quran words</a>
+                            </div>
+                        </li>
+                        <li><a href="/Game/index.html"><i class="fas fa-gamepad"></i>Aarif GAME</a></li>
+
+                        <li><a href="/pdf/index.html"><i class="fas fa-file-pdf" aria-hidden="true"></i> Aarif PDF</a></li>
+                        <li><a href="/footer/contact-us/contact.html"><i class="fas fa-handshake"></i>Contact us</a></li>
+                      </ul>
+                   </nav>
+
+<div class="header-0105-tools-dropdown">
+    <button class="header-0105-tools-btn">
+        <i class="fas fa-th-large"></i> More Tools
+    </button>
+    <div class="header-0105-tools-menu">
+   <a href="/blog/index.html" class="header-0105-mobile-tool-item">
+    <div class="header-0105-tool-icon">
+        <i class="fas fa-blog"></i>
+    </div>
+    <span class="header-0105-tool-name">Blog</span>
+   </a>
+
+        <a href="/GreetingCard/img-to-url.html" class="header-0105-tool-item">
+            <div class="header-0105-tool-icon">
+                <i class="fas fa-image"></i>
+            </div>
+            <span class="header-0105-tool-name">Image to URL</span>
+        </a>
+        <a href="/Game/word-meaning-game.html" class="header-0105-tool-item">
+            <div class="header-0105-tool-icon">
+                <i class="fas fa-gamepad"></i>
+            </div>
+            <span class="header-0105-tool-name">Word Meaning Game</span>
+        </a>
+        <a href="/pdf/image-to-pdf.html" class="header-0105-tool-item">
+            <div class="header-0105-tool-icon">
+                <i class="fas fa-file-image"></i>
+            </div>
+            <span class="header-0105-tool-name">Image to PDF</span>
+        </a>
+        <a href="/pdf/text-to-pdf" class="header-0105-tool-item">
+            <div class="header-0105-tool-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <span class="header-0105-tool-name">Text to PDF</span>
+        </a>
+        <a href="/footer/contact-us/feedback" class="header-0105-tool-item">
+            <div class="header-0105-tool-icon">
+                <i class="fas fa-comment-dots"></i>
+            </div>
+            <span class="header-0105-tool-name">Feedback</span>
+        </a>
+    </div>
+</div>
+
+                <button
+                    class="header-0105-mobile-tools-btn"
+                    id="header0105MobileToolsBtn"
+                    type="button"
+                    aria-label="Toggle tools menu"
+                    aria-expanded="false"
+                >
+                    <i class="fas fa-th-large" aria-hidden="true"></i>
+                </button>
+                <button
+                    class="header-0105-mobile-menu-btn"
+                    id="header0105MobileMenuBtn"
+                    type="button"
+                    aria-label="Toggle navigation menu"
+                    aria-expanded="false"
+                    aria-controls="header0105NavLinks"
+                >
+                    <i class="fas fa-bars" aria-hidden="true"></i>
+                </button>
+            </div>
+        </div>
+    </header>
+
+<div class="header-0105-mobile-tools-menu" id="header0105MobileToolsMenu">
+    <a href="https://aarifalam.life/" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-home"></i>
+        </div>
+        <span class="header-0105-tool-name">Home</span>
+    </a>
+
+   <a href="/blog/index.html" class="header-0105-mobile-tool-item">
+    <div class="header-0105-tool-icon">
+        <i class="fas fa-blog"></i>
+    </div>
+    <span class="header-0105-tool-name">Blog</span>
+   </a>
+
+    <a href="/Game/index.html" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-gamepad"></i>
+        </div>
+        <span class="header-0105-tool-name">Game Zone</span>
+   </a>
+    <a href="/Game/word-meaning-page.html" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-language"></i>
+        </div>
+        <span class="header-0105-tool-name">Word Meaning Game</span>
+    </a>
+
+    <a href="/tools/image-to-url.html" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-link"></i>
+        </div>
+        <span class="header-0105-tool-name">Image to URL</span>
+    </a>
+
+    <a href="/pdf/merge-pdf.html" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-object-group"></i>
+        </div>
+        <span class="header-0105-tool-name">Merge PDF</span>
+    </a>
+    <a href="/pdf/split-pdf.html" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-columns"></i>
+        </div>
+        <span class="header-0105-tool-name">Split PDF</span>
+    </a>
+    <a href="/pdf/image-to-pdf.html" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-file-pdf"></i>
+        </div>
+        <span class="header-0105-tool-name">Image to PDF</span>
+    </a>
+
+    <a href="/tools/greeting-card.html" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-gift"></i>
+        </div>
+        <span class="header-0105-tool-name">Greeting Card</span>
+    </a>
+
+       <a href="/footer/contact-us/contact.html" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-envelope"></i>
+        </div>
+        <span class="header-0105-tool-name">Contact Us</span>
+    </a>
+    <a href="/footer/contact-us/feedback.html" class="header-0105-mobile-tool-item">
+        <div class="header-0105-tool-icon">
+            <i class="fas fa-comment-dots"></i>
+        </div>
+        <span class="header-0105-tool-name">Feedback</span>
+    </a>
+</div>
+
+
+    <div class="floating-elements">
+        <!-- Floating elements will be generated by JavaScript -->
+    </div>
+    
+<div class="container">
+  <header>
+    <div class="small-header">Premium Digital Experience</div>
+    <h1>Welcome</h1>
+    <p>Bring learning and creativity together with colorful blank PDFs for teaching and drawing.</p>
+  </header>
+        
+        <section class="download-section">
+            <a href="download/aa0105.zip" class="download-btn pulse">
+                <i class="fas fa-download"></i> Download Now
+            </a>
+            <p style="margin-top: 15px; opacity: 0.8;">100% Secure | Free use</p>
+        </section>
+        
+<div class="content">
+  <div class="text-content">
+    <h2>Bring Color and Creativity to Learning</h2>
+    <p>Colorful Blank PDFs are perfect for both teachers and artists. Use them to create engaging lessons, student worksheets, or creative drawing activities that inspire imagination and fun.</p>
+
+    <ul class="features">
+      <li><i class="fas fa-check-circle"></i> Suitable for teaching and drawing</li>
+      <li><i class="fas fa-check-circle"></i> Perfect for students and artists</li>
+      <li><i class="fas fa-check-circle"></i> Easy setup and sharing</li>
+    </ul>
+  </div>
+
+            
+            <div class="image-content">
+                <img src="https://res.cloudinary.com/dcwnn9c0u/image/upload/v1759675780/mx7etg05bkxkcjtr35t4.png" alt="Creative Studio Pro Interface" class="product-image">
+            </div>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">500K+</span>
+                <span class="stat-label">Downloads</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">4.9</span>
+                <span class="stat-label">User Rating</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number">98%</span>
+                <span class="stat-label">Satisfaction</span>
+            </div>
+        </div>
+        
+<footer class="site-footer">
+  <p>
+    <a href="/footer/privacy-policy.html">Privacy</a> |
+    <a href="/footer/terms.html">Terms</a> |
+    <a href="/footer/about.html">About</a> |
+    <a href="/footer/contact-us/contact.html">Contact</a>
+  </p>
+  <p>© 2025 AarifAlam.life | All rights reserved.</p>
+</footer>
+    </div>
+
+    <script>
+        // Create floating elements
+        const floatingContainer = document.querySelector('.floating-elements');
+        for (let i = 0; i < 15; i++) {
+            const element = document.createElement('div');
+            element.classList.add('floating-element');
+            
+            // Random size and position
+            const size = Math.random() * 60 + 20;
+            const posX = Math.random() * 100;
+            const posY = Math.random() * 100;
+            
+            element.style.width = `${size}px`;
+            element.style.height = `${size}px`;
+            element.style.left = `${posX}%`;
+            element.style.top = `${posY}%`;
+            element.style.animationDelay = `${Math.random() * 15}s`;
+            
+            floatingContainer.appendChild(element);
+        }
+
+        // Add click effect to download button
+        const downloadBtn = document.querySelector('.download-btn');
+        downloadBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            
+            // Create ripple effect
+            const ripple = document.createElement('span');
+            const rect = this.getBoundingClientRect();
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
+            
+            ripple.style.width = ripple.style.height = `${size}px`;
+            ripple.style.left = `${x}px`;
+            ripple.style.top = `${y}px`;
+            ripple.classList.add('ripple');
+            
+            this.appendChild(ripple);
+            
+            // Remove ripple after animation
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
+            
+            // Show download confirmation
+            alert('Thank you for downloading Creative Studio Pro! Your download will begin shortly.');
+        });
+
+        // Add CSS for ripple effect
+        const style = document.createElement('style');
+        style.textContent = `
+            .ripple {
+                position: absolute;
+                border-radius: 50%;
+                background: rgba(255, 255, 255, 0.6);
+                transform: scale(0);
+                animation: ripple-animation 0.6s linear;
+            }
+            
+            @keyframes ripple-animation {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+    <script src="https://aarifalam.life/main/js/main-header.js"></script>
+
+</body>
+</html>
